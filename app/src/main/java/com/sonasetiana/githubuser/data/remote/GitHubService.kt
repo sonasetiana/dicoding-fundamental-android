@@ -19,10 +19,10 @@ interface GitHubService {
     suspend fun getDetailUser(@Path("username") username: String) : Response<DetailUserData>
 
     @GET("users/{username}/following")
-    suspend fun getFollowing(@Path("username") username: String) : Response<List<UserData>>
+    suspend fun getFollowing(@Path("username", encoded = false) username: String) : Response<List<UserData>>
 
     @GET("users/{username}/followers")
-    suspend fun getFollower(@Path("username") username: String) : Response<List<UserData>>
+    suspend fun getFollower(@Path("username", encoded = false) username: String) : Response<List<UserData>>
 
     companion object {
         fun create() : GitHubService {

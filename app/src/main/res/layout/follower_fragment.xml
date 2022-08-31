@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_follower"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:nestedScrollingEnabled="false"
+        android:visibility="gone"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="72dp"
+        android:visibility="gone"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/container_error"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="72dp"
+        android:visibility="gone">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txt_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:text="Eror"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_try"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Coba Lagi"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</FrameLayout>

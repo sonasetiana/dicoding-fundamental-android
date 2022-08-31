@@ -17,6 +17,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:startIconDrawable="@drawable/ic_round_search"
+        app:endIconMode="none"
+        app:endIconDrawable="@drawable/ic_baseline_cancel"
         android:hint="Cari user github">
 
         <com.google.android.material.textfield.TextInputEditText

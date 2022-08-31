@@ -7,6 +7,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.textfield.TextInputLayout
 import com.sonasetiana.githubuser.data.DataModule
 import com.sonasetiana.githubuser.databinding.ActivityMainBinding
 import com.sonasetiana.githubuser.presentation.GithubViewModelFactory
@@ -45,7 +46,12 @@ class MainActivity : AppCompatActivity() {
             etSearch.addTextChangedListener {
                 handler?.removeCallbacks(debound)
                 keyword = it.toString()
+                tilSearch.endIconMode = if (keyword.isEmpty()) TextInputLayout.END_ICON_NONE else TextInputLayout.END_ICON_CUSTOM
                 handler?.postDelayed(debound, 500L)
+            }
+
+            tilSearch.setEndIconOnClickListener {
+                etSearch.text = null
             }
         }
     }

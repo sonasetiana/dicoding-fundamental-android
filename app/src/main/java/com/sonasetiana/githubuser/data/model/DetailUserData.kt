@@ -30,7 +30,12 @@ data class DetailUserData(
     var created_at: String,
     @SerializedName("updated_at")
     var updated_at: String
-): Parcelable
+): Parcelable {
+    val totalFollowerLabel : String
+        get() = if (followers > 99) "99+" else followers.toString()
+    val totalFollowingLabel : String
+        get() = if (following > 99) "99+" else following.toString()
+}
 
 @Parcelize
 data class DetailUserResults(var data : ArrayList<DetailUserData>) : Parcelable
