@@ -1,4 +1,4 @@
-package com.sonasetiana.githubuser.data
+package com.sonasetiana.githubuser.data.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
@@ -16,3 +16,6 @@ data class UserData(
 
 @Parcelize
 data class UserResults(var data : ArrayList<UserData>) : Parcelable
+
+@Parcelize
+data class SearchUserGitHubResponse(var items: ArrayList<UserData>): Parcelable

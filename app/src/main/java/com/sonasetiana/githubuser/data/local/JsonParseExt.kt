@@ -14,10 +14,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.gson.Gson
-import com.sonasetiana.githubuser.data.DetailUserData
-import com.sonasetiana.githubuser.data.DetailUserResults
-import com.sonasetiana.githubuser.data.UserData
-import com.sonasetiana.githubuser.data.UserResults
+import com.sonasetiana.githubuser.data.model.DetailUserData
+import com.sonasetiana.githubuser.data.model.DetailUserResults
+import com.sonasetiana.githubuser.data.model.UserData
+import com.sonasetiana.githubuser.data.model.UserResults
 import java.io.IOException
 
 fun getJsonDataFromAsset(context: Context, fileName: String): String? {

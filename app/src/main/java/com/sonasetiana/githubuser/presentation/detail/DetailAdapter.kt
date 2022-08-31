@@ -1,17 +1,11 @@
 package com.sonasetiana.githubuser.presentation.detail
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.sonasetiana.githubuser.data.DetailUserData
-import com.sonasetiana.githubuser.data.UserData
-import com.sonasetiana.githubuser.data.local.loadImage
+import com.sonasetiana.githubuser.data.model.DetailUserData
 import com.sonasetiana.githubuser.databinding.ItemDetailBinding
-import com.sonasetiana.githubuser.databinding.ItemMainBinding
-import com.sonasetiana.githubuser.presentation.detail.DetailActivity
 
 class ItemDetail(
     var label: String,

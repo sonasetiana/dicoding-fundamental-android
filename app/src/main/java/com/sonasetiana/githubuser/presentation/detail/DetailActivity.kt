@@ -1,14 +1,12 @@
 package com.sonasetiana.githubuser.presentation.detail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import com.sonasetiana.githubuser.data.UserData
+import androidx.appcompat.app.AppCompatActivity
 import com.sonasetiana.githubuser.data.local.getDetailGithubUser
 import com.sonasetiana.githubuser.data.local.loadCircleImage
-import com.sonasetiana.githubuser.data.local.loadImage
+import com.sonasetiana.githubuser.data.model.UserData
 import com.sonasetiana.githubuser.databinding.ActivityDetailBinding
-import com.sonasetiana.githubuser.databinding.ActivitySplashBinding
 
 class DetailActivity : AppCompatActivity() {
 

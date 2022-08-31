@@ -1,4 +1,4 @@
-package com.sonasetiana.githubuser.data
+package com.sonasetiana.githubuser.data.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

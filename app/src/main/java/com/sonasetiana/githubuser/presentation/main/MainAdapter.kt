@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.sonasetiana.githubuser.data.UserData
 import com.sonasetiana.githubuser.data.local.loadImage
+import com.sonasetiana.githubuser.data.model.UserData
 import com.sonasetiana.githubuser.databinding.ItemMainBinding
 import com.sonasetiana.githubuser.presentation.detail.DetailActivity
 
