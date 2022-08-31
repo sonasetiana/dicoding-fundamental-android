@@ -33,10 +33,9 @@ class DetailViewModel constructor(
     
     private val errorGetFollowing = SingleLiveEvent<String>()
     
-    
     override fun getDetailUser(username: String) {
         setIsLoading(true)
-        job = CoroutineScope(Dispatchers.IO).launch {
+        job = CoroutineScope(Dispatchers.IO + exceptionHandler(errorGetDetailUser)).launch {
             val response = repository.getDetailUser(username = username)
             withContext(Dispatchers.Main) {
                 setIsLoading(false)
@@ -53,7 +52,7 @@ class DetailViewModel constructor(
 
     override fun getFollower(username: String) {
         loadingGetFollower.value = true
-        job = CoroutineScope(Dispatchers.IO).launch {
+        job = CoroutineScope(Dispatchers.IO + exceptionHandler(errorGetFollower)).launch {
             val response = repository.getFollower(username = username)
             withContext(Dispatchers.Main) {
                 loadingGetFollower.value = false
@@ -71,7 +70,7 @@ class DetailViewModel constructor(
 
     override fun getFollowing(username: String) {
         loadingGetFollowing.value = true
-        job = CoroutineScope(Dispatchers.IO).launch {
+        job = CoroutineScope(Dispatchers.IO + exceptionHandler(errorGetFollowing)).launch {
             val response = repository.getFollowing(username = username)
             withContext(Dispatchers.Main) {
                 loadingGetFollowing.value = false

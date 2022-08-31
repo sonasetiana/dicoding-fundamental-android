@@ -12,16 +12,10 @@ class DetailAdapter : RecyclerView.Adapter<DetailAdapter.Holder>(){
 
     private var items = ArrayList<UserData>()
 
-    private var callback : ((UserData) -> Unit) ? = null
-
     @SuppressLint("NotifyDataSetChanged")
     fun set(newItems : ArrayList<UserData>) {
         items = newItems
         notifyDataSetChanged()
-    }
-
-    fun addCallback(callback : ((UserData) -> Unit) ? = null) {
-        this.callback = callback
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -39,9 +33,6 @@ class DetailAdapter : RecyclerView.Adapter<DetailAdapter.Holder>(){
         fun bind(item: UserData) = with(binding) {
             Glide.with(avatar).load(item.avatarUrl).into(avatar)
             txtName.text = item.login
-            itemView.setOnClickListener {
-                callback?.invoke(item)
-            }
         }
     }
 }

@@ -43,10 +43,6 @@ class FollowingFragment : Fragment() {
             observeViewModel()
         }
 
-        detailAdapter.addCallback {
-            detailActivity.getDetailViewModel().getDetailUser(username = it.login)
-        }
-
         requestData()
     }
 

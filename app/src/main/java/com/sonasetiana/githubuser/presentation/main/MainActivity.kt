@@ -1,13 +1,16 @@
 package com.sonasetiana.githubuser.presentation.main
 
+import android.app.SearchManager
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.addTextChangedListener
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.textfield.TextInputLayout
+import com.sonasetiana.githubuser.R
 import com.sonasetiana.githubuser.data.DataModule
 import com.sonasetiana.githubuser.databinding.ActivityMainBinding
 import com.sonasetiana.githubuser.presentation.GithubViewModelFactory
@@ -38,22 +41,46 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.title = "GitHUb Users"
+        supportActionBar?.title = "GitHUb"
         handler = Handler(Looper.getMainLooper())
         with(binding) {
             rvUsers.adapter = mainAdapter
             observeViewModel()
-            etSearch.addTextChangedListener {
-                handler?.removeCallbacks(debound)
-                keyword = it.toString()
-                tilSearch.endIconMode = if (keyword.isEmpty()) TextInputLayout.END_ICON_NONE else TextInputLayout.END_ICON_CUSTOM
-                handler?.postDelayed(debound, 500L)
-            }
-
-            tilSearch.setEndIconOnClickListener {
-                etSearch.text = null
-            }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.main_menu, menu)
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchView = menu?.findItem(R.id.search)?.actionView as SearchView
+
+        with(searchView) {
+            setSearchableInfo(searchManager.getSearchableInfo(componentName))
+            queryHint = "Search users"
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+                /*
+                    Gunakan method ini ketika search selesai atau OK
+                 */
+                override fun onQueryTextSubmit(p0: String?): Boolean {
+                    return false
+                }
+
+                /*
+                    Gunakan method ini untuk merespon tiap perubahan huruf pada searchView
+                 */
+                override fun onQueryTextChange(param: String?): Boolean {
+                    handler?.removeCallbacks(debound)
+                    keyword = param ?: ""
+                    handler?.postDelayed(debound, 500L)
+                    return true
+                }
+
+            })
+        }
+
+        return true
     }
 
     override fun onResume() {

@@ -7,15 +7,14 @@ import com.sonasetiana.githubuser.base.SingleLiveEvent
 import com.sonasetiana.githubuser.data.GitHubRepository
 import com.sonasetiana.githubuser.data.model.SearchUserGitHubResponse
 import com.sonasetiana.githubuser.data.model.UserData
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainViewModel constructor(
     private val repository: GitHubRepository
 ) : BaseViewModel(), MainViewModelContract {
-
-    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        errorRequest.postValue("Exception handled: ${throwable.localizedMessage}")
-    }
 
     private val successGetAllUsers = MutableLiveData<ArrayList<UserData>>()
 
@@ -25,7 +24,7 @@ class MainViewModel constructor(
 
     override fun getAllUsers() {
         setIsLoading(true)
-        job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
+        job = CoroutineScope(Dispatchers.IO + exceptionHandler(errorRequest)).launch {
             val response = repository.getAllUsers()
             withContext(Dispatchers.Main) {
                 setIsLoading(false)
@@ -42,7 +41,7 @@ class MainViewModel constructor(
 
     override fun searchUser(keyword: String) {
         setIsLoading(true)
-        job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
+        job = CoroutineScope(Dispatchers.IO + exceptionHandler(errorRequest)).launch {
             val response = repository.searchUser(keyword = keyword)
             withContext(Dispatchers.Main) {
                 setIsLoading(false)

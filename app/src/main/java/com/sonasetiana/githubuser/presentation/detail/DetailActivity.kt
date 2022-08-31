@@ -45,7 +45,6 @@ class DetailActivity : AppCompatActivity() {
             TabLayoutMediator(tabLayout, viewPager) { tabs, index ->
                 tabs.text = arrayListOf("Follower ${data.totalFollowerLabel}", "Following ${data.totalFollowingLabel}")[index]
             }.attach()
-
             Glide.with(avatar).load(data.avatarUrl).into(avatar)
             txtName.text = data.name
             txtLocation.text = data.location
