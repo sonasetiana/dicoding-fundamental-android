@@ -18,4 +18,8 @@ data class UserData(
 data class UserResults(var data : ArrayList<UserData>) : Parcelable
 
 @Parcelize
-data class SearchUserGitHubResponse(var items: ArrayList<UserData>): Parcelable
+data class SearchUserGitHubResponse(
+    val total_count: Int,
+    val incomplete_results: Boolean,
+    var items: ArrayList<UserData>
+): Parcelable

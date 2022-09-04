@@ -3,15 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_outline_settings.xml" value="0.143" />
+        <entry key="app/src/main/res/drawable/ic_round_favorite.xml" value="0.143" />
         <entry key="app/src/main/res/drawable/ic_round_search.xml" value="0.143" />
+        <entry key="app/src/main/res/drawable/ic_round_star.xml" value="0.143" />
         <entry key="app/src/main/res/layout/Item_user.xml" value="0.28125" />
         <entry key="app/src/main/res/layout/activity_detail.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/detail_fragment.xml" value="0.28125" />
         <entry key="app/src/main/res/layout/follower_fragment.xml" value="0.28229166666666666" />
-        <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.13125" />
+        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.28125" />
         <entry key="app/src/main/res/layout/item_detail.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/item_favorite.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/item_main.xml" value="0.25" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.28125" />
       </map>
