@@ -8,6 +8,7 @@ import android.widget.CompoundButton
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.sonasetiana.githubuser.databinding.FragmentSettingBinding
 import com.sonasetiana.githubuser.presentation.factory.ViewModelFactory
 import com.sonasetiana.githubuser.presentation.modules.main.MainActivity
@@ -37,7 +38,10 @@ class SettingFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.observeViewModel()
+        binding?.apply {
+            observeViewModel()
+            toolbar.setNavigationOnClickListener { findNavController().popBackStack() }
+        }
     }
 
     override fun onDestroyView() {

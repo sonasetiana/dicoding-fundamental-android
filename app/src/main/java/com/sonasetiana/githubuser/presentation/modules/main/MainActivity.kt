@@ -38,16 +38,10 @@ class MainActivity : AppCompatActivity() {
             queryHint = "Search users"
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
-                /*
-                    Gunakan method ini ketika search selesai atau OK
-                 */
                 override fun onQueryTextSubmit(p0: String?): Boolean {
                     return false
                 }
 
-                /*
-                    Gunakan method ini untuk merespon tiap perubahan huruf pada searchView
-                 */
                 override fun onQueryTextChange(keyword: String?): Boolean {
                     with(viewModel) {
                         setTextOnChange(keyword.orEmpty())

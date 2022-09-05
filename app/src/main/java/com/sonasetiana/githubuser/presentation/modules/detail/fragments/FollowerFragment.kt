@@ -8,19 +8,27 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.sonasetiana.githubuser.R
 import com.sonasetiana.githubuser.data.model.UserData
 import com.sonasetiana.githubuser.data.remote.network.NetworkResults
 import com.sonasetiana.githubuser.databinding.FollowerFragmentBinding
 import com.sonasetiana.githubuser.helper.gone
 import com.sonasetiana.githubuser.helper.visible
 import com.sonasetiana.githubuser.presentation.factory.ViewModelFactory
-import com.sonasetiana.githubuser.presentation.modules.main.MainActivity
-import com.sonasetiana.githubuser.presentation.modules.detail.DetailFragment
 import com.sonasetiana.githubuser.presentation.modules.detail.DetailViewModel
 import com.sonasetiana.githubuser.presentation.modules.detail.adapter.DetailAdapter
 
 class FollowerFragment : Fragment() {
+
+    companion object {
+        private val EXTRA_DATA = "data"
+        fun newInstance(data: UserData?): FollowerFragment {
+            val args = Bundle()
+            data?.let { args.putParcelable(EXTRA_DATA, it) }
+            val fragment = FollowerFragment()
+            fragment.arguments = args
+            return fragment
+        }
+    }
 
     private var binding : FollowerFragmentBinding? = null
 
@@ -37,10 +45,6 @@ class FollowerFragment : Fragment() {
         activity?.application?.let { application ->
             viewModel = ViewModelProvider(this, ViewModelFactory(application))[DetailViewModel::class.java]
         }
-        val host = (activity as MainActivity).supportFragmentManager.findFragmentById(R.id.container)
-        (host?.childFragmentManager?.fragments?.first() as? DetailFragment)?.let { detail ->
-            userData = detail.getUserData()
-        }
     }
 
     override fun onCreateView(
@@ -54,6 +58,7 @@ class FollowerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        userData = arguments?.getParcelable(EXTRA_DATA) as? UserData
         binding?.apply {
             with(rvFollower) {
                 adapter = detailAdapter

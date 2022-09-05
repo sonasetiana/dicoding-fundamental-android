@@ -2,7 +2,6 @@ package com.sonasetiana.githubuser.presentation.modules.home
 
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -37,8 +36,6 @@ class HomeViewModel(
     }
 
     fun searching(keyword: String) {
-
-        Log.d("TAGHOMEFRAGMNT", "observeMainViewModel: searching $keyword")
         handler?.removeCallbacks(debound)
         this.keyword = keyword
         handler?.postDelayed(debound, 500)

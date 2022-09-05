@@ -13,13 +13,13 @@ data class DetailUserData(
     @SerializedName("avatar_url")
     var avatarUrl: String,
     @SerializedName("name")
-    var name: String,
+    var name: String?,
     @SerializedName("company")
-    var company: String,
+    var company: String?,
     @SerializedName("blog")
-    var blog: String,
+    var blog: String?,
     @SerializedName("location")
-    var location: String,
+    var location: String?,
     @SerializedName("public_repos")
     var publicRepos: Int,
     @SerializedName("followers")

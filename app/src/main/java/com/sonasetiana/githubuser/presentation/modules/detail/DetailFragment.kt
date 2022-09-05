@@ -118,14 +118,14 @@ class DetailFragment : Fragment(){
     private fun FragmentDetailBinding.updateUi() {
         detailUserData?.let { data ->
             toolbar.setNavigationOnClickListener { findNavController().popBackStack() }
-            viewPager.adapter = DetailPagerAdapter(mActivity)
+            viewPager.adapter = DetailPagerAdapter(mActivity, data = userData)
             TabLayoutMediator(tabLayout, viewPager) { tabs, index ->
                 tabs.text = arrayListOf("Follower ${data.totalFollowerLabel}", "Following ${data.totalFollowingLabel}")[index]
             }.attach()
             Glide.with(avatar).load(data.avatarUrl).into(avatar)
             txtName.text = data.name
-            txtLocation.text = data.location
-            txtCompany.text = data.company
+            txtLocation.text = data.location.orEmpty()
+            txtCompany.text = data.company.orEmpty()
             data.checkFavorite()
         }
         contentView.visible()
@@ -171,7 +171,7 @@ class DetailFragment : Fragment(){
             FavoriteData(
                 userId = user.id,
                 login = user.login,
-                name = user.name,
+                name = user.name.orEmpty(),
                 avatarUrl = user.avatarUrl,
                 createdAt = user.created_at
             ).run {
@@ -192,5 +192,4 @@ class DetailFragment : Fragment(){
         }
     }
 
-    fun getUserData() = userData
 }
