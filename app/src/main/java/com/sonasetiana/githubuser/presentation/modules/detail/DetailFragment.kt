@@ -123,6 +123,7 @@ class DetailFragment : Fragment(){
                 tabs.text = arrayListOf("Follower ${data.totalFollowerLabel}", "Following ${data.totalFollowingLabel}")[index]
             }.attach()
             Glide.with(avatar).load(data.avatarUrl).into(avatar)
+            txtLogin.text = data.login
             txtName.text = data.name
             txtLocation.text = data.location.orEmpty()
             txtCompany.text = data.company.orEmpty()

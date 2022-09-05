@@ -2,10 +2,8 @@ package com.sonasetiana.githubuser.data.remote.datasource
 
 import com.sonasetiana.githubuser.data.model.DetailUserData
 import com.sonasetiana.githubuser.data.model.UserData
-import com.sonasetiana.githubuser.data.remote.network.ApiError
 import com.sonasetiana.githubuser.data.remote.network.BaseResponse
-import com.sonasetiana.githubuser.data.remote.network.NetworkConstant
-import com.sonasetiana.githubuser.data.remote.network.getApiError
+import com.sonasetiana.githubuser.data.remote.network.toApiError
 import com.sonasetiana.githubuser.data.remote.services.GitHubService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -21,11 +19,11 @@ class RemoteDataSourceImpl(
             if (response.isSuccessful) {
                 emit(BaseResponse(data = response.body()))
             } else  {
-                val apiError = ApiError(code = NetworkConstant.ERROR_GENERAL, message = response.errorBody().toString())
+                val apiError = response.errorBody().toApiError()
                 emit(BaseResponse(error = apiError))
             }
-        }catch (e: Throwable) {
-            emit(BaseResponse(e.getApiError()))
+        }catch (t: Throwable) {
+            emit(BaseResponse(error = t.toApiError()))
         }
     }.flowOn(Dispatchers.IO)
 
@@ -35,11 +33,11 @@ class RemoteDataSourceImpl(
             if (response.isSuccessful) {
                 emit(BaseResponse(data = response.body()?.items))
             } else  {
-                val apiError = ApiError(code = NetworkConstant.ERROR_GENERAL, message = response.errorBody().toString())
+                val apiError = response.errorBody().toApiError()
                 emit(BaseResponse(error = apiError))
             }
-        }catch (e: Throwable) {
-            emit(BaseResponse(e.getApiError()))
+        }catch (t: Throwable) {
+            emit(BaseResponse(error = t.toApiError()))
         }
     }.flowOn(Dispatchers.IO)
 
@@ -49,11 +47,11 @@ class RemoteDataSourceImpl(
             if (response.isSuccessful) {
                 emit(BaseResponse(data = response.body()))
             } else  {
-                val apiError = ApiError(code = NetworkConstant.ERROR_GENERAL, message = response.errorBody().toString())
+                val apiError = response.errorBody().toApiError()
                 emit(BaseResponse(error = apiError))
             }
-        }catch (e: Throwable) {
-            emit(BaseResponse(e.getApiError()))
+        }catch (t: Throwable) {
+            emit(BaseResponse(error = t.toApiError()))
         }
     }.flowOn(Dispatchers.IO)
 
@@ -63,11 +61,11 @@ class RemoteDataSourceImpl(
             if (response.isSuccessful) {
                 emit(BaseResponse(data = response.body()))
             } else  {
-                val apiError = ApiError(code = NetworkConstant.ERROR_GENERAL, message = response.errorBody().toString())
+                val apiError = response.errorBody().toApiError()
                 emit(BaseResponse(error = apiError))
             }
-        }catch (e: Throwable) {
-            emit(BaseResponse(e.getApiError()))
+        }catch (t: Throwable) {
+            emit(BaseResponse(error = t.toApiError()))
         }
     }.flowOn(Dispatchers.IO)
 
@@ -76,12 +74,12 @@ class RemoteDataSourceImpl(
             val response = service.getFollower(username)
             if (response.isSuccessful) {
                 emit(BaseResponse(data = response.body()))
-            } else  {
-                val apiError = ApiError(code = NetworkConstant.ERROR_GENERAL, message = response.errorBody().toString())
+            } else {
+                val apiError = response.errorBody().toApiError()
                 emit(BaseResponse(error = apiError))
             }
-        }catch (e: Throwable) {
-            emit(BaseResponse(e.getApiError()))
+        }catch (t: Throwable) {
+            emit(BaseResponse(error = t.toApiError()))
         }
     }.flowOn(Dispatchers.IO)
 }

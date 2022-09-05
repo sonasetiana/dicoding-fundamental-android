@@ -1,10 +1,12 @@
 package com.sonasetiana.githubuser.data.remote.network
 
+import com.google.gson.Gson
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 class NetworkModule {
 
@@ -22,8 +24,10 @@ class NetworkModule {
 
     private fun getClient() : OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(getInterceptor())
+            .readTimeout(60L, TimeUnit.SECONDS)
+            .writeTimeout(60L, TimeUnit.SECONDS)
             .addInterceptor(BaseInterceptor())
+            .addInterceptor(getInterceptor())
             .build()
     }
 
@@ -31,7 +35,7 @@ class NetworkModule {
         return Retrofit.Builder()
             .client(getClient())
             .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(Gson()))
             .build()
     }
 }
