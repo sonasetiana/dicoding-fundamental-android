@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/bg_ripple.xml" value="0.143" />
         <entry key="app/src/main/res/drawable/ic_outline_settings.xml" value="0.143" />
         <entry key="app/src/main/res/drawable/ic_round_favorite.xml" value="0.143" />
         <entry key="app/src/main/res/drawable/ic_round_search.xml" value="0.143" />
